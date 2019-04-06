@@ -27,6 +27,7 @@ public class Bengkel {
         new ProdukLayanan("Ban", 10500),
     };
 
+    Scanner input = new Scanner(System.in);
     int total;
 
     public static void main(String[] args) {
@@ -35,7 +36,6 @@ public class Bengkel {
     }
 
     public void pilihProdukLayanan() {
-        Scanner input = new Scanner(System.in);
         System.out.println("Pilih produk:");
         for (int i = 0; i < produkLayanan.length; i++) {
             ProdukLayanan pl = produkLayanan[i];
@@ -44,7 +44,7 @@ public class Bengkel {
 
         System.out.print("Masukkan pilihan produk dan layanan: ");
 
-        int produkLayananDipilih = input.nextInt();
+        int produkLayananDipilih = this.input.nextInt();
 
         ProdukLayanan produkLayananTerpilih = produkLayanan[produkLayananDipilih-1];
         System.out.println("");
@@ -59,23 +59,30 @@ public class Bengkel {
     }
 
     public void tanyaPilihProdukLayananLain() {
-        Scanner input = new Scanner(System.in);
-
         System.out.println("Apakah anda mau memilih produk layanan yang lain?");
         System.out.println("1. Ya       2. Tidak");
         System.out.print("Jawab: ");
-        int jawaban = input.nextInt();
+        int jawaban = this.input.nextInt();
 
         if (jawaban == 1) {
             this.pilihProdukLayanan();
         } else if (jawaban == 2) {
             System.out.println("");
-            System.out.println("Terima kasih sudah berbelanja.");
-            this.printTotal();
+            this.bayar();
         } else {
             System.out.println("Kami tidak menemukan jawaban yg anda maksud.");
             this.tanyaPilihProdukLayananLain();
         }
+    }
+
+    public void bayar() {
+        System.out.print("Uang yang dibayar: Rp. ");
+        int uangBayar = this.input.nextInt();
+        int kembalian = uangBayar - this.total;
+
+        System.out.println("Total kembalian: Rp. " + kembalian);
+        System.out.println("");
+        System.out.println("Terima kasih sudah berbelanja.");
     }
 
     public void printTotal() {

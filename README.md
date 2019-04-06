@@ -18,14 +18,20 @@
 
 ## How to run
 
-1. Compile
+    1. Change directory
 
 ```bash
-javac ./src/Bengkel.java
+cd src
 ```
 
-2. Run
+    2. Compile
 
 ```bash
-java ./src/Bengkel.java
+javac Bengkel.java
+```
+
+    3. Run
+
+```bash
+java Bengkel.java
 ```
