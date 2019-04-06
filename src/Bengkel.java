@@ -1,11 +1,11 @@
 // Copyright 2019 rohmanhm
-// 
+//
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
 // You may obtain a copy of the License at
-// 
+//
 //     http://www.apache.org/licenses/LICENSE-2.0
-// 
+//
 // Unless required by applicable law or agreed to in writing, software
 // distributed under the License is distributed on an "AS IS" BASIS,
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
@@ -36,17 +36,32 @@ public class Bengkel {
     }
 
     public void pilihProdukLayanan() {
+        int hargaSemuaServis = 0;
+
         System.out.println("Pilih produk:");
         for (int i = 0; i < produkLayanan.length; i++) {
             ProdukLayanan pl = produkLayanan[i];
             System.out.println(i+1 + ". " + pl.nama + " - Rp. " + pl.harga);
+            hargaSemuaServis += pl.harga;
         }
 
+        ProdukLayanan semuaServisProdukLayanan = new ProdukLayanan("Semua servis", hargaSemuaServis);
+
+        System.out.println("99. " + semuaServisProdukLayanan.nama +" - Rp. " + semuaServisProdukLayanan.harga);
         System.out.print("Masukkan pilihan produk dan layanan: ");
 
         int produkLayananDipilih = this.input.nextInt();
 
-        ProdukLayanan produkLayananTerpilih = produkLayanan[produkLayananDipilih-1];
+        if (produkLayananDipilih == 99) {
+            this.printPesanan(semuaServisProdukLayanan);
+            return;
+        }
+
+        this.printPesanan(produkLayanan[produkLayananDipilih-1]);
+    }
+
+    public void printPesanan(ProdukLayanan pl) {
+        ProdukLayanan produkLayananTerpilih = pl;
         System.out.println("");
         System.out.println("Anda memilih " + produkLayananTerpilih.nama + " @ Rp. " + produkLayananTerpilih.harga);
         System.out.println("");
@@ -83,6 +98,8 @@ public class Bengkel {
         System.out.println("Total kembalian: Rp. " + kembalian);
         System.out.println("");
         System.out.println("Terima kasih sudah berbelanja.");
+
+        this.input.close();
     }
 
     public void printTotal() {
